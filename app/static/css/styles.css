@@ -1,0 +1,11 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Custom styles (if needed) */
+body {
+    font-family: 'Inter', sans-serif;
+}

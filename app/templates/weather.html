@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Weather Search{% endblock %}
+{% block content %}
+<div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4 text-center">Weather Search</h2>
+    <form action="/weather" method="POST" class="space-y-4">
+        <div>
+            <label for="city" class="block text-sm font-medium">City</label>
+            <input type="text" id="city" name="city" class="w-full p-2 border rounded-md" required>
+        </div>
+        <div>
+            <label for="country" class="block text-sm font-medium">Country (e.g., US)</label>
+            <input type="text" id="country" name="country" class="w-full p-2 border rounded-md" value="US">
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Get Weather</button>
+    </form>
+    {% if weather %}
+        <div class="mt-6 p-4 bg-gray-50 rounded-md">
+            <h3 class="text-xl font-semibold">{{ weather.city }}</h3>
+            <p>Temperature: {{ weather.temperature }}°C</p>
+            <p>Humidity: {{ weather.humidity }}%</p>
+            <p>Description: {{ weather.description }}</p>
+            <h4 class="mt-4 font-semibold">5-Day Forecast</h4>
+            <ul class="list-disc pl-5">
+                {% for forecast in weather.forecast_summary %}
+                    <li>{{ forecast.date }}: {{ forecast.temp }}°C</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

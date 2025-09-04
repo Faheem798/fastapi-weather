@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Weather Dashboard{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/static/css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Weather Dashboard</h1>
+            <div>
+                {% if current_user %}
+                    <span class="mr-4">Welcome, {{ current_user.username }}</span>
+                    <a href="/logout" class="mr-4 hover:underline">Logout</a>
+                    <a href="/favorites" class="mr-4 hover:underline">Favorites</a>
+                    <a href="/weather" class="hover:underline">Weather</a>
+                {% else %}
+                    <a href="/login" class="mr-4 hover:underline">Login</a>
+                    <a href="/register" class="hover:underline">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <main class="container mx-auto mt-8 p-4">
+        {% block content %}{% endblock %}
+    </main>
+    <script src="/static/js/scripts.js"></script>
+</body>
+</html>
